@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.aimprosoft.task1</groupId>
+    <artifactId>task1</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <properties>
+        <jettyVersion>9.4.8.v20171121</jettyVersion>
+    <hibernateVersion>5.2.12.Final</hibernateVersion>
+    </properties>
+    <dependencies>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+         <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.30</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernateVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernateVersion}</version>
+        </dependency>
+
+
+    </dependencies>
+    <build>
+    <finalName>${project.artifactId}</finalName>
+    <plugins>
+        <plugin>
+
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-maven-plugin</artifactId>
+            <version>${jettyVersion}</version>
+
+            <configuration>
+
+
+                <httpConnector>
+                    <port>2222</port>
+                </httpConnector>
+
+
+
+                <war>${project.basedir}/target/${project.artifactId}.war</war>
+
+                <webApp>
+                    <contextPath>/${project.artifactId}</contextPath>
+                </webApp>
+            </configuration>
+        </plugin>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <configuration>
+                <webXml>${basedir}/src/main/webapp/WEB-INF/web.xml</webXml>
+                <warSourceDirectory>${basedir}/src/main/webapp</warSourceDirectory>
+
+            </configuration>
+        </plugin>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+
+
+                <source>1.8</source>
+                <target>1.8</target>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+
+    
+</project>
